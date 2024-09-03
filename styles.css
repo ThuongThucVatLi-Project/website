@@ -4,14 +4,13 @@ body {
     padding: 0;
     background-image: url('Assets/ava full with AI.png');
     background-size: cover;
-    background-position: ;
     background-repeat: no-repeat;
 }
 
 header {
     background-color: #333;
     color: white;
-    padding: 3px;
+    padding: 1em;
     text-align: center;
 }
 
@@ -22,7 +21,7 @@ main {
 }
 
 section {
-    margin-bottom: 3px;
+    margin-bottom: 3em;
 }
 
 footer {
