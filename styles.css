@@ -251,7 +251,7 @@ footer::before {
 }
 
 .footer-logo {
-    height: 60px;
+    height: 150px;
     margin-bottom: 1em;
     filter: brightness(0) invert(1); /* Makes logo white */
 }
