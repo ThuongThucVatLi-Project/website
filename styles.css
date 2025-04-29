@@ -1,39 +1,486 @@
-body {
-    font-family: Arial, sans-serif;
+/* Base reset and fonts */
+* {
     margin: 0;
     padding: 0;
-    background-image: url('Assets/ava full with AI.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+    box-sizing: border-box;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 1em;
-    text-align: center;
-}
-
-main {
-    padding: 1em;
-    color: aliceblue;
-    font-weight: bold;
-}
-
-section {
-    margin-bottom: 3em;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-    position: fixed;
+html, body {
+    height: 100%;
     width: 100%;
-    bottom: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    color: #333;
+    position: relative;
+}
+
+/* Background with blur effect */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('Assets/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(10px); /* Increased blur effect */
+    z-index: -1;
+    transform: scale(1.1); /* Prevents blur edges from showing */
+}
+
+/* Header styling */
+header {
+    background-color: rgba(106, 13, 173, 0.9); /* Semi-transparent purple */
+    color: white;
+    padding: 0; /* Remove padding from header */
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+    min-height: 80px; /* Set minimum height for header */
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* This ensures vertical alignment */
+    padding: 0 2em;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%; /* Make sure it takes full height of the header */
+}
+
+/* Updated Logo Styling */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add space between logo and menu */
+}
+
+.nav-logo a {
+    display: block;
+    line-height: 0; /* Removes extra space below the image */
+}
+
+.nav-logo img {
+    height: 70px; /* Increased from 50px to 70px */
+    width: auto;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5)); /* Logo glow effect */
+    padding: 5px 0; /* Add some vertical padding */
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5em;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.7em 1em;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for better visibility */
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-menu a.active {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Main content styling */
+main {
+    padding: 2.5em;
+    background-color: rgba(255, 255, 255, 0.85); /* More opaque for better content visibility */
+    margin: 2em auto;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+/* Section styling */
+section {
+    margin-bottom: 2.5em;
+    padding: 1.5em;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+/* Typography enhancements for better readability */
+h2 {
+    color: #6a0dad; /* Purple */
+    font-size: 2em;
+    margin-bottom: 0.8em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #6a0dad;
+    padding-bottom: 0.3em;
+}
+
+p {
+    line-height: 1.8;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.3px;
+}
+
+section.team ul {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+section.team li {
+    padding: 0.6em 0;
+    border-bottom: 1px solid rgba(106, 13, 173, 0.3);
+    font-size: 1.05em;
+}
+
+section.team li:last-child {
+    border-bottom: none;
+}
+
+section.team strong {
+    color: #6a0dad;
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+/* Upload form styling */
+.upload form {
+    margin: 1.5em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#fileInput {
+    padding: 0.8em;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.upload button {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 1em 1.5em;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+}
+
+.upload button:hover {
+    background-color: #0056b3; /* Darker Blue */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 #documentDisplay {
-    margin-top: 1em;
+    margin-top: 1.5em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 100px;
+    background-color: white;
+}
+
+/* Enhanced Footer Design */
+footer {
+    background: linear-gradient(135deg, #6a0dad 0%, #4a148c 100%);
+    color: #fff;
+    padding: 0;
+    margin-top: 3em;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to right bottom, transparent 49%, #6a0dad 50%);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3em 2em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+}
+
+.footer-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    height: 60px;
+    margin-bottom: 1em;
+    filter: brightness(0) invert(1); /* Makes logo white */
+}
+
+.footer-tagline {
+    font-style: italic;
+    margin-bottom: 1.5em;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.copyright {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: auto;
+}
+
+.footer-nav h3, .contact h3 {
+    color: #fff;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.footer-nav h3::after, .contact h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #007bff;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav li {
+    margin-bottom: 0.7em;
+}
+
+.footer-nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-nav a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact p:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contact p.email:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+.contact p.facebook:before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z'/%3E%3C/svg%3E");
+}
+
+.contact a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact a:hover {
+    color: #00c2ff;
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 1.5em;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #007bff;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 1.5em 0;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    main {
+        padding: 1.5em;
+        margin: 1em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Team Members Section */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.team-member {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .profile-image img {
+    transform: scale(1.05);
+}
+
+.member-info {
+    padding: 20px;
+}
+
+.member-info h3 {
+    color: #6a0dad;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.member-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.member-bio {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Placeholder for missing images */
+.profile-image img[src$="president.jpg"],
+.profile-image img[src$="vice-president1.jpg"],
+.profile-image img[src$="pr-head.jpg"],
+.profile-image img[src$="media-head.jpg"],
+.profile-image img[src$="specialist-head.jpg"],
+.profile-image img[src$="translation-head.jpg"] {
+    background-color: #e0e0ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .profile-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
 }

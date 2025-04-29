@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực nghiệm - Thưởng thức Vật lí</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="background-container"></div>
+    
+    <header>
+        <div class="nav-bar">
+            <div class="nav-logo">
+                <a href="gioithieu.html">
+                    <img src="Assets/ttvl.png" alt="Thưởng thức Vật lí Logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="gioithieu.html">Giới thiệu</a></li>
+                <li><a href="thucnghiem.html" class="active">Thực nghiệm</a></li>
+                <li><a href="chuyende.html">Chuyên đề</a></li>
+                <li><a href="nentang.html">Nền tảng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <main>
+        <section class="intro">
+            <h2>Thực nghiệm mô phỏng</h2>
+            <p>
+                Trang này cung cấp các mô phỏng thực nghiệm về vật lí để giúp học sinh hiểu rõ hơn các khái niệm lí thuyết thông qua thực hành trực quan.
+            </p>
+        </section>
+        
+        <section class="simulator">
+            <h2>Mô phỏng mạch điện</h2>
+            <p>Sử dụng mô phỏng CircuitJS1 để thử nghiệm các mạch điện:</p>
+            
+            <!-- CircuitJS1 simulator will be embedded here -->
+            <div id="circuitjs-container" style="width:100%; height:600px; border:1px solid #ccc; margin-top:20px;">
+                <iframe id="circuitjs-frame" style="width:100%; height:100%; border:none;" src="circuitjs1/index.html"></iframe>
+            </div>
+            
+            <div class="simulator-controls">
+                <h3>Hướng dẫn sử dụng</h3>
+                <ul>
+                    <li>Kéo và thả các linh kiện từ thanh công cụ vào không gian mô phỏng</li>
+                    <li>Nhấp đúp vào linh kiện để điều chỉnh thông số</li>
+                    <li>Sử dụng nút "Run/Stop" để bắt đầu hoặc dừng mô phỏng</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="circuit-examples">
+            <h2>Ví dụ mạch điện</h2>
+            <div class="example-grid">
+                <div class="example-card">
+                    <h3>Mạch RC cơ bản</h3>
+                    <p>Mạch điện với điện trở và tụ điện nối tiếp.</p>
+                    <button class="load-circuit" data-circuit="rc-circuit">Xem mạch</button>
+                </div>
+                
+                <div class="example-card">
+                    <h3>Mạch cầu Wien</h3>
+                    <p>Mạch dao động hình sin đơn giản.</p>
+                    <button class="load-circuit" data-circuit="wien-bridge">Xem mạch</button>
+                </div>
+                
+                <div class="example-card">
+                    <h3>Mạch khuếch đại op-amp</h3>
+                    <p>Mạch khuếch đại với bộ khuếch đại thuật toán.</p>
+                    <button class="load-circuit" data-circuit="opamp-amplifier">Xem mạch</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Thưởng thức Vật lí</p>
+            <div class="contact">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:contact@thuongthucvatli.me">contact@thuongthucvatli.me</a></p>
+                <p>Facebook: <a href="https://facebook.com/thuongthucvatli" target="_blank">facebook.com/thuongthucvatli</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
