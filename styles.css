@@ -7,11 +7,16 @@
 
 html, body {
     height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    color: #333;
-    position: relative;
+    /* Reset font to the old one */
+    body {
+        font-family: Arial, sans-serif; /* Replace with the old font */
+    }    /* Reset font to the old one */
+
+}
+
+/* Main content should take up available space */
+main {
+    flex: 1; /* This makes the main content expand to fill the available space */
 }
 
 /* Background with blur effect */
@@ -218,8 +223,8 @@ section.team strong {
 footer {
     background: linear-gradient(135deg, #6a0dad 0%, #4a148c 100%);
     color: #fff;
-    padding: 0;
-    margin-top: 3em;
+    padding: 1.5em 0;
+    margin-top: auto; /* Pushes the footer to the bottom */
     position: relative;
     z-index: 10;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
