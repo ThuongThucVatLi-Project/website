@@ -1,172 +1,394 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="                document.body.style.paddingTop = '1rem'; /* Chỉ một chút space khi không có banner */n">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thưởng thức Vật lí</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="myIcon.ico" type="image/x-icon" />
+    <script>
+        // Clear any previously stored banner state
+        localStorage.removeItem('devBannerClosed');
+        
+        // Inline JavaScript for banner to ensure it loads immediately
+        function closeBanner() {
+            const banner = document.getElementById('devBanner');
+            const navbar = document.querySelector('.navbar');
+            
+            banner.classList.add('hidden');
+            
+            // Remove the banner from DOM after animation
+            setTimeout(() => {
+                banner.remove();
+                // Adjust navbar position and body padding when banner is closed
+                if (navbar) {
+                    navbar.style.top = '0'; // Move navbar to top
+                }
+                document.body.style.paddingTop = '3rem'; // Only navbar space (1rem padding * 2 + 1rem content)
+            }, 500);
+            
+            // Don't store in localStorage - banner will show again on next visit
+        }
+    </script>
+    </script>
 </head>
 <body>
-    <div class="background-container"></div>
-    
-    <header>
-        <div class="nav-bar">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <img src="Assets/ttvl.png" alt="Thưởng thức Vật lí Logo">
-                </a>
+    <!-- Development Banner -->
+    <div id="devBanner" class="dev-banner">
+        <div class="dev-banner-content">
+            <div class="dev-banner-text">
+                <span class="dev-banner-icon">🚧</span>
+                <span class="dev-banner-message">Website đang trong quá trình phát triển. Một số tính năng có thể chưa hoàn thiện.</span>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Giới thiệu</a></li>
-                <li><a href="https://studynotes.thuongthucvatli.me/">Kho tài liệu mở</a></li>
-           <!--     <li><a href="chuyende.html">Chuyên đề</a></li>
-                 <li><a href="thucnghiem.html">Thực nghiệm</a></li>
-                <li><a href="nentang.html">Nền tảng</a></li>
-                <li><a href="lienhe.html">Liên hệ</a></li> -->
+            <button class="dev-banner-close" onclick="closeBanner()" aria-label="Đóng thông báo">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="Assets/ava-full.png" alt="Thưởng thức Vật lí" class="logo">
+                <span class="brand-text">Thưởng thức Vật lí</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Trang chủ</a></li>
+                <li><a href="#brand-intro" class="nav-link">Thương hiệu</a></li>
+                <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+                <li><a href="#team" class="nav-link">Đội ngũ</a></li>
+                <li><a href="https://studynotes.thuongthucvatli.me/" class="nav-link">Tài liệu</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
     
     <main>
-        <section class="intro">
-            <h2>Tổng quan dự án</h2>
-            <p>
-                "Thưởng thức Vật lí" là dự án học thuật đầu tiên được khởi xướng bởi các học sinh chuyên Lý của Trường THPT Chuyên Lê Hồng Phong, TP. Hồ Chí Minh. Ra đời vào tháng 05/2024, dự án hướng đến việc mang đến cho học sinh THPT một góc nhìn mới mẻ và trực quan trong việc học môn Vật lí, thông qua các chuyên đề chuyên sâu và các thí nghiệm minh họa được biên soạn và thực hiện công phu bởi chính đội ngũ học sinh chuyên lý của trường.
-
-                Hiện tại, nhóm đang phát triển một trang web giáo dục với mục tiêu hỗ trợ học sinh Việt Nam học Vật lí thông qua các mô phỏng tương tác và hướng dẫn về thực hành thí nghiệm. Chúng tôi mong muốn mang Vật lí đến gần hơn với học sinh, đặc biệt là những bạn có ít cơ hội tiếp cận với phòng thí nghiệm, qua đó giúp việc học trở nên dễ tiếp cận và hấp dẫn hơn.
-            </p>
-        </section>
-        
-        <section class="team">
-            <h2>Giới thiệu thành viên</h2>
-            
-            <div class="team-grid">
-                <!-- President -->
-                <div class="team-member">
-                    <div class="profile-image">
-                    <!-- <img src="Assets/members/president.jpg" alt="Huỳnh Tuấn Hưng"> -->
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-logo-showcase">
+                        <img src="Assets/ava-full.png" alt="Thưởng thức Vật lí Logo" class="hero-logo">
                     </div>
-                    <div class="member-info">
-                        <h3>President</h3>
-                        <p class="member-name">Huỳnh Tuấn Hưng</p>
-                        <p class="member-bio">CEO, nah CTO</p>
+                    <h1 class="hero-title">Thưởng thức Vật lí</h1>
+                    <p class="hero-subtitle">Khám phá thế giới vật lí qua góc nhìn mới mẻ và trực quan</p>
+                    <p class="hero-description">
+                        Dự án học thuật đầu tiên được khởi xướng bởi học sinh chuyên Lý trường THPT Chuyên Lê Hồng Phong
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary">Khám phá ngay</a>
+                        <a href="https://studynotes.thuongthucvatli.me/" class="btn btn-secondary">Tài liệu học tập</a>
                     </div>
                 </div>
-                
-                <!-- Vice Presidents -->
-                <div class="team-member">
-                    <div class="profile-image">
-                        <img src="Assets/members/vice-president1.jpg" alt="Vice President">
-                    </div>
-                    <div class="member-info">
-                        <h3>Vice President</h3>
-                        <p class="member-name">[Add name here]</p>
-                        <p class="member-bio">Mô tả ngắn về thành viên này và vai trò của họ trong dự án.</p>
-                    </div>
-                </div>
-                
-                <!-- Head of Public Relations -->
-                <div class="team-member">
-                    <div class="profile-image">
-                        <img src="Assets/members/pr-head.jpg" alt="PR Head">
-                    </div>
-                    <div class="member-info">
-                        <h3>Head of Public Relations</h3>
-                        <p class="member-name">[Add name here]</p>
-                        <p class="member-bio">Mô tả ngắn về thành viên này và vai trò của họ trong dự án.</p>
-                    </div>
-                </div>
-                
-                <!-- Head of Media & Design -->
-                <div class="team-member">
-                    <div class="profile-image">
-                        <img src="Assets/members/media-head.jpg" alt="Media Head">
-                    </div>
-                    <div class="member-info">
-                        <h3>Head of Media & Design</h3>
-                        <p class="member-name">[Add name here]</p>
-                        <p class="member-bio">Mô tả ngắn về thành viên này và vai trò của họ trong dự án.</p>
-                    </div>
-                </div>
-                
-                <!-- Head of Specialists -->
-                <div class="team-member">
-                    <div class="profile-image">
-                        <img src="Assets/members/specialist-head.jpg" alt="Specialist Head">
-                    </div>
-                    <div class="member-info">
-                        <h3>Head of Specialists Dept.</h3>
-                        <p class="member-name">[Add name here]</p>
-                        <p class="member-bio">Mô tả ngắn về thành viên này và vai trò của họ trong dự án.</p>
-                    </div>
-                </div>
-                
-                <!-- Head of Translation -->
-                <div class="team-member">
-                    <div class="profile-image">
-                        <img src="Assets/members/translation-head.jpg" alt="Translation Head">
-                    </div>
-                    <div class="member-info">
-                        <h3>Head of Translation Dept.</h3>
-                        <p class="member-name">[Add name here]</p>
-                        <p class="member-bio">Mô tả ngắn về thành viên này và vai trò của họ trong dự án.</p>
+                <div class="hero-visual">
+                    <div class="physics-animation">
+                        <div class="solar-system">
+                            <div class="sun"></div>
+                            <div class="planet planet-1"></div>
+                            <div class="planet planet-2"></div>
+                            <div class="planet planet-3"></div>
+                            <div class="planet planet-4"></div>
+                            <div class="planet planet-5"></div>
+                            <div class="planet planet-6"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-    
+
+        <!-- Video Showcase Section -->
+        <section class="video-showcase">
+            <div class="container">
+                <div class="video-content">
+                    <div class="video-info">
+                        <h3>Video học thuật nổi bật</h3>
+                        <p>Khám phá nội dung chất lượng cao từ dự án "Thưởng thức Vật lí"</p>
+                    </div>
+                    <div class="video-container">
+                        <a href="https://youtu.be/6XpYLCribdc" target="_blank" class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/6XpYLCribdc/maxresdefault.jpg" alt="Video học thuật - Thưởng thức Vật lí">
+                            <div class="play-button">
+                                <svg width="68" height="48" viewBox="0 0 68 48" fill="none">
+                                    <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34.0.13 34.0.13S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05.06 24.0.06 24.0s0 10.95 1.42 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34.0 47.87 34.0 47.87s21.79 0 27.1-1.42c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 67.94 24.0 67.94 24.0s0-10.95-1.42-16.26Z" fill="#f00"/>
+                                    <path d="M27.04 34.0L45.0 24.0L27.04 14.0v20Z" fill="#fff"/>
+                                </svg>
+                            </div>
+                            <div class="video-overlay">
+                                <p>Xem video trên YouTube</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Introduction Section -->
+        <section id="brand-intro" class="brand-intro">
+            <div class="container">
+                <div class="brand-showcase">
+                    <div class="brand-logo-container">
+                        <img src="Assets/ava-full.png" alt="Thưởng thức Vật lí Logo" class="brand-logo">
+                        <div class="logo-glow"></div>
+                    </div>
+                    <div class="brand-story">
+                        <h2>Câu chuyện thương hiệu</h2>
+                        <p class="brand-description">
+                            Logo "Thưởng thức Vật lí" được thiết kế thể hiện sự kết hợp hoàn hảo giữa nghệ thuật và khoa học. 
+                            Mỗi đường nét trong logo đều mang một ý nghĩa sâu sắc, tượng trưng cho hành trình khám phá 
+                            những bí ẩn của vũ trụ qua lăng kính vật lí.
+                        </p>
+                        <div class="brand-values">
+                            <div class="value-item">
+                                <div class="value-icon">🎯</div>
+                                <h4>Tầm nhìn</h4>
+                                <p>Trở thành nền tảng học tập vật lí hàng đầu tại Việt Nam</p>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">💫</div>
+                                <h4>Sứ mệnh</h4>
+                                <p>Mang kiến thức vật lí đến gần hơn với mọi học sinh</p>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-icon">🌟</div>
+                                <h4>Giá trị</h4>
+                                <p>Sáng tạo, chất lượng và dễ tiếp cận</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Về dự án</h2>
+                    <p>Mang đến góc nhìn mới mẻ trong việc học Vật lí</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">🔬</div>
+                        <h3>Thí nghiệm trực quan</h3>
+                        <p>Các thí nghiệm minh họa được thực hiện công phu, giúp học sinh hiểu rõ hơn về các hiện tượng vật lí.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">📚</div>
+                        <h3>Chuyên đề chuyên sâu</h3>
+                        <p>Nội dung được biên soạn bởi học sinh chuyên Lý, phù hợp với chương trình học THPT.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🌐</div>
+                        <h3>Mô phỏng tương tác</h3>
+                        <p>Hệ thống mô phỏng giúp học sinh dễ dàng tiếp cận và thực hành các bài tập vật lí.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Đội ngũ phát triển</h2>
+                    <p>Những người đồng hành cùng dự án</p>
+                </div>
+            </div>
+            <div class="team-carousel-container">
+                <div class="team-carousel">
+                    <div class="team-grid">
+                    <!-- President -->
+                    <div class="team-member" data-member="president">
+                        <div class="member-avatar">
+                            <img src="Assets/members/president.jpg" alt="Huỳnh Tuấn Hưng" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>HTH</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Huỳnh Tuấn Hưng</h3>
+                            <p class="member-role">President</p>
+                            <p class="member-bio">CEO, nah CTO</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Vice President -->
+                    <div class="team-member" data-member="vice-president">
+                        <div class="member-avatar">
+                            <img src="Assets/members/vice-president1.jpg" alt="Vice President" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>VP</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Chưa cập nhật</h3>
+                            <p class="member-role">Vice President</p>
+                            <p class="member-bio">Hỗ trợ điều hành và phát triển dự án</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Head of PR -->
+                    <div class="team-member" data-member="pr-head">
+                        <div class="member-avatar">
+                            <img src="Assets/members/pr-head.jpg" alt="PR Head" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>PR</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Chưa cập nhật</h3>
+                            <p class="member-role">Head of Public Relations</p>
+                            <p class="member-bio">Quản lý mối quan hệ công chúng và truyền thông</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Head of Media -->
+                    <div class="team-member" data-member="media-head">
+                        <div class="member-avatar">
+                            <img src="Assets/members/media-head.jpg" alt="Media Head" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>MD</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Chưa cập nhật</h3>
+                            <p class="member-role">Head of Media & Design</p>
+                            <p class="member-bio">Thiết kế và sản xuất nội dung media</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Head of Specialists -->
+                    <div class="team-member" data-member="specialist-head">
+                        <div class="member-avatar">
+                            <img src="Assets/members/specialist-head.jpg" alt="Specialist Head" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>SP</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Chưa cập nhật</h3>
+                            <p class="member-role">Head of Specialists</p>
+                            <p class="member-bio">Phát triển nội dung chuyên môn</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Head of Translation -->
+                    <div class="team-member" data-member="translation-head">
+                        <div class="member-avatar">
+                            <img src="Assets/members/translation-head.jpg" alt="Translation Head" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder">
+                                <span>TR</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Chưa cập nhật</h3>
+                            <p class="member-role">Head of Translation</p>
+                            <p class="member-bio">Dịch thuật và bản địa hóa nội dung</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation buttons -->
+            <button class="carousel-nav prev" aria-label="Previous members">❮</button>
+            <button class="carousel-nav next" aria-label="Next members">❯</button>
+            
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <!-- Indicators will be generated by JavaScript -->
+            </div>
+        </div>
+        </section>
     </main>
     
-    <footer>
-        <div class="footer-content">
-            <div class="footer-branding">
-                <img src="Assets/ttvl.png" alt="Thưởng thức Vật lí Logo" class="footer-logo">
-                <p class="footer-tagline">Skibidi</p>
-                <p class="copyright">&copy; 2024 Thưởng thức Vật lí</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo-container">
+                        <img src="Assets/ttvl.png" alt="Thưởng thức Vật lí" class="footer-logo">
+                        <div class="footer-logo-glow"></div>
+                    </div>
+                    <div class="footer-brand-content">
+                        <h4 class="footer-brand-name">Thưởng thức Vật lí</h4>
+                        <p>Khám phá thế giới vật lí qua góc nhìn mới mẻ và trực quan</p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-links">
+                        <a href="#home">Trang chủ</a>
+                        <a href="#brand-intro">Thương hiệu</a>
+                        <a href="#about">Giới thiệu</a>
+                        <a href="#team">Đội ngũ</a>
+                        <a href="https://studynotes.thuongthucvatli.me/">Tài liệu</a>
+                    </div>
+                    <div class="footer-contact">
+                        <p>Email: contact@thuongthucvatli.me</p>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                                </svg>
+                            </a>
+                            <a href="#" title="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="footer-nav">
-                <h3>Khám Phá</h3>
-                <ul>
-                    <li><a href="gioithieu.html">Giới thiệu</a></li>
-                    <li><a href="thucnghiem.html">Thực nghiệm</a></li>
-                    <li><a href="chuyende.html">Chuyên đề</a></li>
-                    <li><a href="nentang.html">Nền tảng</a></li>
-                    <li><a href="lienhe.html">Liên hệ</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Thưởng thức Vật lí. Được phát triển bởi học sinh chuyên Lý THPT Chuyên Lê Hồng Phong.</p>
             </div>
-            
-            <div class="contact">
-                <h3>Liên Hệ</h3>
-                <p class="email">Email: <a href="mailto:contact@thuongthucvatli.me">thuongthucvatli@gmail.com</a></p>
-                <p class="facebook">Facebook: <a href="https://facebook.com/thuongthucvatli" target="_blank">facebook.com/thuongthucvatli</a></p>
-                
-                <div class="social-links">
-                    <a href="#" title="Facebook">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
-                            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
-                        </svg>
-                    </a>
-                    <a href="#" title="YouTube">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
-                            <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" title="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
-                            <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07-3.2 0-3.58-.01-4.85-.07-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85 0-3.2.01-3.58.07-4.85.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0-2.16c-3.26 0-3.67.01-4.95.07-1.28.06-2.15.26-2.91.56-.79.31-1.46.72-2.13 1.38-.66.67-1.08 1.34-1.38 2.13-.3.76-.5 1.63-.56 2.91-.06 1.28-.07 1.69-.07 4.95s.01 3.67.07 4.95c.06 1.28.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.63.5 2.91.56 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.63.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13-.67-.66-1.34-1.08-2.13-1.38-.76-.3-1.63-.5-2.91-.56-1.28-.06-1.69-.07-4.95-.07zm0 5.84c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 9.84c-2.12 0-3.84-1.72-3.84-3.84s1.72-3.84 3.84-3.84 3.84 1.72 3.84 3.84-1.72 3.84-3.84 3.84zm7.68-10.08c0 .77-.62 1.4-1.4 1.4-.77 0-1.4-.62-1.4-1.4 0-.77.62-1.4 1.4-1.4.78 0 1.4.63 1.4 1.4z"/>
-                        </svg>
-                    </a>
+        </div>
+    </footer>
+
+    <!-- Member Portfolio Modal -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <div class="modal-avatar">
+                    <img id="modalAvatar" src="" alt="">
+                    <div id="modalAvatarPlaceholder" class="avatar-placeholder">
+                        <span id="modalInitials"></span>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalName"></h2>
+                    <p id="modalRole"></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="portfolio-section">
+                    <h3>Giới thiệu</h3>
+                    <p id="modalBio"></p>
+                </div>
+                <div class="portfolio-section">
+                    <h3>Thành tích</h3>
+                    <div id="modalAchievements" class="achievements-list">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="portfolio-section">
+                    <h3>Những đóng góp cho dự án</h3>
+                    <div id="modalProjects" class="projects-list">
+                        <!-- Projects will be populated by JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>Trang web này được phát triển bởi học sinh chuyên Lý trường THPT chuyên Lê Hồng Phong, Tp. HCM.</p>
-        </div>
-    </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
