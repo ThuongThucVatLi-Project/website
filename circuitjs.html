@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CircuitJS1 - Mô phỏng mạch điện | Thưởng thức Vật lí</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="myIcon.ico" type="image/x-icon" />
+    <style>
+        .circuit-container {
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .circuit-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .circuit-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .circuit-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .circuit-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .circuit-frame {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .circuit-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .control-btn.secondary {
+            background: #95a5a6;
+        }
+
+        .control-btn.secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .back-to-home {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-home:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(231, 76, 60, 0.4);
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #3498db;
+            z-index: 10;
+        }
+
+        .circuit-frame-container {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .circuit-header h1 {
+                font-size: 2rem;
+            }
+            
+            .circuit-frame {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .control-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="Assets/ava-full.png" alt="Thưởng thức Vật lí" class="logo">
+                <span class="brand-text">Thưởng thức Vật lí</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Trang chủ</a></li>
+                <li><a href="#brand-intro" class="nav-link">Thương hiệu</a></li>
+                <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+                <li><a href="#team" class="nav-link">Đội ngũ</a></li>
+                <li><a href="circuitjs.html" class="nav-link">Mô phỏng mạch</a></li>
+                <li><a href="https://studynotes.thuongthucvatli.me/" class="nav-link">Tài liệu</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="circuit-container">
+        <div class="circuit-header">
+            <h1>🔌 CircuitJS1 - Mô phỏng mạch điện</h1>
+            <p>Công cụ mô phỏng mạch điện tương tác, giúp bạn thiết kế và thử nghiệm các mạch điện một cách trực quan</p> <br>
+            <p>Phần mềm được phát triển bởi <a href="https://www.falstad.com/circuit/">Falstad</a></p> <br>
+            <span> Dịch ra tiếng Việt bởi Thưởng thức Vật lí</span>
+        </div>
+
+        <div class="circuit-wrapper">
+            <div class="circuit-controls">
+                <button class="control-btn" onclick="resetCircuit()">
+                    🔄 Đặt lại
+                </button>
+                <button class="control-btn secondary" onclick="toggleFullscreen()">
+                    📱 Toàn màn hình
+                </button>
+                <a href="https://www.falstad.com/circuit/circuitjs.html" target="_blank" class="control-btn">
+                    🚀 Mở trang riêng
+                </a>
+            </div>
+
+            <div class="circuit-frame-container">
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div>⚡ Đang tải CircuitJS1...</div>
+                </div>
+                <iframe 
+                    id="circuitFrame"
+                    src="https://www.falstad.com/circuit/circuitjs.html" 
+                    class="circuit-frame"
+                    onload="hideLoading()">
+                </iframe>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Mô phỏng thời gian thực</h3>
+                <p>Xem các tín hiệu điện và dòng điện chảy qua mạch trong thời gian thực</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Kéo thả dễ dàng</h3>
+                <p>Thiết kế mạch điện bằng cách kéo thả các linh kiện từ thanh công cụ</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Đo lường chính xác</h3>
+                <p>Đo điện áp, dòng điện và các thông số khác với độ chính xác cao</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>Lưu và chia sẻ</h3>
+                <p>Lưu các thiết kế mạch và chia sẻ với bạn bè qua liên kết</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-to-home" title="Về trang chủ">
+        🏠
+    </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo-container">
+                        <img src="Assets/ttvl.png" alt="Thưởng thức Vật lí" class="footer-logo">
+                        <div class="footer-logo-glow"></div>
+                    </div>
+                    <div class="footer-brand-content">
+                        <h4 class="footer-brand-name">Thưởng thức Vật lí</h4>
+                        <p>Khám phá thế giới vật lí qua góc nhìn mới mẻ và trực quan</p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-links">
+                        <a href="#home">Trang chủ</a>
+                        <a href="#brand-intro">Thương hiệu</a>
+                        <a href="#about">Giới thiệu</a>
+                        <a href="#team">Đội ngũ</a>
+                        <a href="https://studynotes.thuongthucvatli.me/">Tài liệu</a>
+                    </div>
+                    <div class="footer-contact">
+                        <p>Email: contact@thuongthucvatli.me</p>
+                        <div class="social-links">
+                            <a href="#" title="Facebook">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                                </svg>
+                            </a>
+                            <a href="#" title="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Thưởng thức Vật lí. Được phát triển bởi học sinh chuyên Lý THPT Chuyên Lê Hồng Phong.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function hideLoading() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
+        }
+
+        function resetCircuit() {
+            const frame = document.getElementById('circuitFrame');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+            
+            // Reload the iframe
+            frame.src = frame.src;
+        }
+
+        function toggleFullscreen() {
+            const frame = document.getElementById('circuitFrame');
+            if (frame.requestFullscreen) {
+                frame.requestFullscreen();
+            } else if (frame.webkitRequestFullscreen) {
+                frame.webkitRequestFullscreen();
+            } else if (frame.msRequestFullscreen) {
+                frame.msRequestFullscreen();
+            }
+        }
+
+        // Handle iframe loading errors
+        document.getElementById('circuitFrame').onerror = function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.innerHTML = '<div style="text-align: center;"><div>❌ Không thể tải CircuitJS1</div><div style="margin-top: 1rem;"><a href="circuitjs1/war/circuitjs.html" target="_blank" class="control-btn">Mở trang riêng</a></div></div>';
+        };
+
+        // Set a timeout to hide loading overlay if iframe doesn't load
+        setTimeout(() => {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay && loadingOverlay.style.display !== 'none') {
+                loadingOverlay.innerHTML = '<div style="text-align: center;"><div>⏳ Tải chậm hơn bình thường...</div><div style="margin-top: 1rem;"><a href="circuitjs1/war/circuitjs.html" target="_blank" class="control-btn">Mở trang riêng</a></div></div>';
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
