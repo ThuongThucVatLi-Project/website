@@ -3,6 +3,12 @@
     <inherits name="com.google.gwt.user.User" />
     <inherits name="com.google.gwt.http.HTTP" />
     <inherits name='com.google.gwt.user.theme.clean.Clean'/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
+    
+    <!-- Support for Vietnamese and English -->
+    <extend-property name="locale" values="vi,en"/>
+    <set-property-fallback name="locale" value="en"/>
+    
     <entry-point class="com.lushprojects.circuitjs1.client.circuitjs1" />
     <stylesheet src='style.css' />
 </module>
