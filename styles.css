@@ -1758,4 +1758,334 @@ section {
     }
 }
 
-/* Debug styles for video container */
+/* CircuitJS1 Feature Section */
+.circuit-feature {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.circuit-feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 10,0 L 10,20 M 0,10 L 20,10" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23circuit)"/></svg>');
+    opacity: 0.3;
+}
+
+.circuit-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.circuit-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.circuit-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.circuit-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature-item .feature-icon {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.feature-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.feature-item p {
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.circuit-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.circuit-buttons .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.circuit-buttons .btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.circuit-buttons .btn-primary:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+.circuit-buttons .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.circuit-buttons .btn-secondary:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-2px);
+}
+
+/* Circuit Demo Animation */
+.circuit-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circuit-demo {
+    width: 400px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.demo-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 2rem;
+}
+
+.demo-circuit {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.demo-components {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.component {
+    position: absolute;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.resistor {
+    width: 60px;
+    height: 15px;
+    top: 50px;
+    left: 50px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+}
+
+.capacitor {
+    width: 20px;
+    height: 40px;
+    top: 40px;
+    right: 60px;
+    background: linear-gradient(45deg, #4ecdc4, #6dd5ed);
+}
+
+.inductor {
+    width: 50px;
+    height: 20px;
+    bottom: 60px;
+    left: 70px;
+    background: linear-gradient(45deg, #45b7d1, #96c7ed);
+    border-radius: 10px;
+}
+
+.battery {
+    width: 30px;
+    height: 60px;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(45deg, #f9ca24, #f0932b);
+}
+
+.demo-wires {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.wire {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+}
+
+.wire-1 {
+    width: 2px;
+    height: 100px;
+    top: 40px;
+    left: 50px;
+}
+
+.wire-2 {
+    width: 120px;
+    height: 2px;
+    top: 60px;
+    left: 50px;
+}
+
+.wire-3 {
+    width: 2px;
+    height: 80px;
+    bottom: 50px;
+    right: 60px;
+}
+
+.current-flow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.electron {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffeb3b;
+    animation: flowElectron 3s linear infinite;
+}
+
+.electron-1 {
+    top: 60px;
+    left: 50px;
+    animation-delay: 0s;
+}
+
+.electron-2 {
+    top: 60px;
+    left: 50px;
+    animation-delay: 1s;
+}
+
+.electron-3 {
+    top: 60px;
+    left: 50px;
+    animation-delay: 2s;
+}
+
+@keyframes flowElectron {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    25% {
+        transform: translateX(120px) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(120px) translateY(80px);
+        opacity: 1;
+    }
+    75% {
+        transform: translateX(0) translateY(80px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design for Circuit Feature */
+@media (max-width: 768px) {
+    .circuit-showcase {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .circuit-info h2 {
+        font-size: 2rem;
+    }
+    
+    .circuit-demo {
+        width: 300px;
+        height: 200px;
+    }
+    
+    .circuit-buttons {
+        justify-content: center;
+    }
+    
+    .circuit-buttons .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .circuit-demo {
+        width: 250px;
+        height: 180px;
+    }
+    
+    .demo-screen {
+        padding: 1rem;
+    }
+    
+    .component {
+        transform: scale(0.8);
+    }
+}
