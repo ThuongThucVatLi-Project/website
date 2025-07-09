@@ -1,2 +1,2 @@
 # website
-repository for thuongthucvatli.me
+repository for thuongthucvatli.com
