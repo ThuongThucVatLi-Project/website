@@ -230,6 +230,9 @@
                 <button class="control-btn secondary" onclick="toggleFullscreen()">
                     📱 Toàn màn hình
                 </button>
+                <button class="control-btn" onclick="toggleLanguage()">
+                    🌐 EN/VI
+                </button>
                 <a href="https://www.falstad.com/circuit/circuitjs.html" target="_blank" class="control-btn">
                     🚀 Mở trang riêng
                 </a>
@@ -241,7 +244,7 @@
                 </div>
                 <iframe 
                     id="circuitFrame"
-                    src="https://www.falstad.com/circuit/circuitjs.html" 
+                    src="circuitjs1/war/circuitjs.html?locale=vi" 
                     class="circuit-frame"
                     onload="hideLoading()">
                 </iframe>
@@ -325,6 +328,21 @@
             const loadingOverlay = document.getElementById('loadingOverlay');
             if (loadingOverlay) {
                 loadingOverlay.style.display = 'none';
+            }
+        }
+
+        function toggleLanguage() {
+            const frame = document.getElementById('circuitFrame');
+            const currentSrc = frame.src;
+            
+            // Toggle between Vietnamese and English
+            if (currentSrc.includes('locale=vi')) {
+                // Switch to English
+                frame.src = currentSrc.replace('locale=vi', 'locale=en');
+            } else {
+                // Switch to Vietnamese
+                const separator = currentSrc.includes('?') ? '&' : '?';
+                frame.src = currentSrc + separator + 'locale=vi';
             }
         }
 
